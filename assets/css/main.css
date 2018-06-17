@@ -1,0 +1,35 @@
+.minesweeper {
+}
+
+.minesweeper .table {
+    margin: 3px;
+    display: inline-block;
+}
+
+.minesweeper .row {
+}
+
+.minesweeper .cell {
+    width: 25px;
+    height: 25px;
+    border: 1px solid grey;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.minesweeper .cell.default {
+    background: grey;
+}
+
+.minesweeper .cell.flag {
+    background: darkorange;
+}
+
+.minesweeper .cell.mine {
+    background: red;
+}
+
+.minesweeper .cell.open {
+    background: white;
+    cursor: default;
+}
