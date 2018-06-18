@@ -67,7 +67,7 @@ class Cell {
     }
 
 
-    calcAroundCellWithMinesCount (){
+    calc_around_cell_with_mines_count (){
         let count = 0;
 
         for (let i = 0; i < this.around_cells.length; i++){

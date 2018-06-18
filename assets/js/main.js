@@ -150,11 +150,11 @@ var minesweeper_app = new Vue({
             for (i = 0; i < cells_objects.length; i++){
                 let cell = cells_objects[ i ];
 
-                cell.around_cells = this.getAroundCells(i);
-                cell.calcAroundCellWithMinesCount();
+                cell.around_cells = this.get_around_cells(i);
+                cell.calc_around_cell_with_mines_count();
             }
         },
-        getAroundCells : function(cell_index){
+        get_around_cells : function(cell_index){
             let cells_around = [];
             let size = this.level.size;
             let cell_row = Math.floor(cell_index / size) ;
