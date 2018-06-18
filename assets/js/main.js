@@ -211,7 +211,7 @@ var minesweeper_app = new Vue({
                 this.end_game(true);
         },
         mark_cell : function (event) {
-            if (this.game_over)
+            if (this.game_over || !this.mines_count)
                 return;
 
             var cell = $(event.target).data("cell");
