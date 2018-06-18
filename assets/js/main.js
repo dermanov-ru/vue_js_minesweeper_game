@@ -70,28 +70,20 @@ var minesweeper_app = new Vue({
 
             this.game_started = true;
             this.game_over = false;
-            this.add_mines();
+            this.init_cells();
 
             // start game timer
             this.timer = setInterval(function () {
                 minesweeper_app.game_time_seconds++;
             }, 1000);
         },
-        add_mines : function () {
+        init_cells : function () {
             // wait while filed render
             this.$nextTick(function () {
-                // TODO improve mines count generation algoritm, depend on field size
-                var count_min = Math.pow(this.level.size, 2) / 5;
-                var count_max = count_min * 1.5;
-
-                var mines_count = this.randomIntFromInterval(count_min, count_max);
                 var cells_objects = [];
                 var cells = $("#minesweeper .cell");
                 var i = 0;
 
-                this.mines_count = mines_count;
-
-                // init cells
                 for (; i < cells.length; i++){
                     let cell = new Cell(cells[ i ]);
                     $(cells[ i ]).data("cell", cell);
@@ -99,20 +91,38 @@ var minesweeper_app = new Vue({
                     cells_objects.push(cell);
                 }
 
-                // add mines
-                let shuffled_cells = this.shuffle(cells_objects);
-                for (i = 0; i < mines_count; i++){
-                    shuffled_cells[ i ].has_mine = true;
-                }
-
-                for (i = 0; i < cells_objects.length; i++){
-                    let cell = cells_objects[ i ];
-
-                    cell.mines_cells_around_count = this.getAroundCellWithMinesCount(i, cells_objects);
-                }
-
                 this.cells = cells_objects;
             });
+        },
+        add_mines : function (start_cell) {
+            // TODO improve mines count generation algoritm, depend on field size
+            var count_min = Math.pow(this.level.size, 2) / 5;
+            var count_max = count_min * 1.5;
+
+            var mines_count = this.randomIntFromInterval(count_min, count_max);
+            var cells_objects = this.cells;
+            var i = 0;
+
+            // add mines
+            let shuffled_cells = this.shuffle(cells_objects);
+            for (i = 0; i < mines_count; i++){
+                let cell = shuffled_cells[ i ];
+
+                if (cell === start_cell){
+                    mines_count--;
+                    continue;
+                }
+
+                cell.has_mine = true;
+            }
+
+            this.mines_count = mines_count;
+
+            for (i = 0; i < cells_objects.length; i++){
+                let cell = cells_objects[ i ];
+
+                cell.mines_cells_around_count = this.getAroundCellWithMinesCount(i, cells_objects);
+            }
         },
 
         getAroundCellWithMinesCount : function(cell_index, cells){
@@ -186,6 +196,11 @@ var minesweeper_app = new Vue({
 
             if (cell.is_opened || cell.is_marked)
                 return;
+
+            // then open first cell
+            if (!this.mines_count){
+                this.add_mines(cell);
+            }
 
             var has_mine = cell.open();
 
