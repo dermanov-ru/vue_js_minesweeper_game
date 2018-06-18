@@ -55,4 +55,18 @@ class Cell {
         return this.has_mine;
     }
 
+
+    calcAroundCellWithMinesCount (){
+        let count = 0;
+
+        for (let i = 0; i < this.around_cells.length; i++){
+            let cell = this.around_cells[ i ];
+
+            if (cell.has_mine)
+                count++;
+        }
+
+        this.mines_cells_around_count = count;
+    }
+
 }
