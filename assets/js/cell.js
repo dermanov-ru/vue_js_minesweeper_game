@@ -24,11 +24,13 @@ class Cell {
     mark() {
         this.is_marked = true;
         $(this.el).addClass("flag");
+        $(this.el).text("!");
     }
 
     unmark() {
         this.is_marked = false;
         $(this.el).removeClass("flag");
+        $(this.el).text("");
     }
 
     open() {
