@@ -33,6 +33,7 @@ var minesweeper_app = new Vue({
             }
         ],
         level : {},
+        game_prepared : false,
         game_started : false,
         game_over : false,
         game_won : false,
@@ -56,21 +57,25 @@ var minesweeper_app = new Vue({
     }, mounted : function() {
         // raped start normal game while develop mode
         this.level = this.levels[ 3 ]; // unreal
-        this.start_game();
+        this.prepare_game();
     },
     methods : {
         repeat_game : function () {
             location.reload(); // TODO implement repeat game func :)
         },
-        start_game : function () {
+        prepare_game : function () {
             if (!this.level.code){
                 alert("Нужно выбрать уровень!");
                 return;
             }
 
-            this.game_started = true;
+            this.game_prepared = true;
             this.game_over = false;
             this.init_cells();
+        },
+        start_game : function (start_cell) {
+            this.game_started = true;
+            this.add_mines(start_cell);
 
             // start game timer
             this.timer = setInterval(function () {
@@ -190,8 +195,8 @@ var minesweeper_app = new Vue({
                 return;
 
             // then open first cell
-            if (!this.mines_count){
-                this.add_mines(cell);
+            if (!this.game_started){
+                this.start_game(cell);
             }
 
             var has_mine = cell.open();
@@ -211,7 +216,7 @@ var minesweeper_app = new Vue({
                 this.end_game(true);
         },
         mark_cell : function (event) {
-            if (this.game_over || !this.mines_count)
+            if (this.game_over || !this.game_started)
                 return;
 
             var cell = $(event.target).data("cell");

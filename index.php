@@ -23,7 +23,7 @@
 <body>
     <div id="minesweeper" class="minesweeper">
         
-        <div v-if="!game_started">
+        <div v-if="!game_prepared">
             <p>Выберите уровень
                 <select name="" id="" v-model="level" placeholder="- Выбрать уровень -">
                     <option v-for="(level, index) in levels" v-bind:value="level" >
@@ -37,7 +37,7 @@
             </p>
         </div>
     
-        <div v-if="game_started">
+        <div v-if="game_prepared">
             <p>Режим игры: {{level.title}} </p>
             <p>Время игры: {{game_time_formated}} </p>
             <p>Всего мин: {{mines_count}} </p>
