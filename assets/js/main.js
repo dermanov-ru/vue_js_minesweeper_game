@@ -60,8 +60,32 @@ var minesweeper_app = new Vue({
         this.prepare_game();
     },
     methods : {
+        reset_game : function () {
+            this.game_started = false;
+            this.game_over = false;
+            this.game_won = false;
+            this.game_time_seconds = 0;
+            this.mines_count = 0;
+            this.marked_count = 0;
+            this.opened_count = 0;
+
+            this.game_prepared = false;
+            this.cells = [];
+        },
         repeat_game : function () {
-            location.reload(); // TODO implement repeat game func :)
+            this.game_prepared = true;
+            this.game_started = false;
+            this.game_over = false;
+            this.game_won = false;
+            this.game_time_seconds = 0;
+            this.mines_count = 0;
+            this.marked_count = 0;
+            this.opened_count = 0;
+
+            // clear mines and close cells
+            for (let i = 0; i < this.cells.length; i++){
+                this.cells[ i ].reset();
+            }
         },
         prepare_game : function () {
             if (!this.level.code){

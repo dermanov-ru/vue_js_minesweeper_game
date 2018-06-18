@@ -33,7 +33,7 @@
             </p>
             
             <p>
-                <button @click="start_game">Начать игру</button>
+                <button @click="prepare_game">Начать игру</button>
             </p>
         </div>
     
@@ -44,9 +44,10 @@
             <p>Отмечено флажком: {{marked_count}} </p>
             
             <div v-if="game_over">
-                <p v-if="!game_won">Игра окончена, вы проиграли!</p>
-                <p v-if="game_won">Ура, вы победили!</p>
+                <p v-if="!game_won"><strong>Игра окончена, вы проиграли!</strong></p>
+                <p v-if="game_won"><strong>Ура, вы победили!</strong></p>
                 <button @click="repeat_game">Повторить игру</button>
+                <button @click="reset_game">Выбрать другой уровень</button>
             </div>
     
     

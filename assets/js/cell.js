@@ -33,6 +33,15 @@ class Cell {
         $(this.el).text("");
     }
 
+    reset() {
+        this.is_opened = false;
+        this.is_marked = false;
+        this.has_mine = false;
+        this.mines_cells_around_count = 0;
+        $(this.el).removeClass("open flag mine");
+        $(this.el).text("");
+    }
+
     open() {
         this.is_opened = true;
 
