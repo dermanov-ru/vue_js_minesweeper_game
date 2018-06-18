@@ -16,6 +16,9 @@
     display: inline-block;
     cursor: pointer;
     margin: 0 2px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 25px;
 }
 
 .minesweeper .cell.default {
@@ -28,6 +31,7 @@
 
 .minesweeper .cell.mine {
     background: red;
+    color: transparent;
 }
 
 .minesweeper .cell.open {
