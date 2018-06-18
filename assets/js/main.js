@@ -223,14 +223,15 @@ var minesweeper_app = new Vue({
                 this.start_game(cell);
             }
 
-            var has_mine = cell.open();
+            var success_opened_count = cell.open(this.opened_count);
+            var has_mine = !success_opened_count;
 
             if (has_mine) {
                 this.end_game(false);
+            } else {
+                this.opened_count += success_opened_count;
+                this.check_game_won();
             }
-
-            this.opened_count++;
-            this.check_game_won();
         },
         check_game_won : function (){
             let field_size = Math.pow(this.level.size, 2);

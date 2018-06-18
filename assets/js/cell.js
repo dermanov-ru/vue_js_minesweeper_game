@@ -43,12 +43,14 @@ class Cell {
     }
 
     open() {
+        let success_opened_counter = 0;
         this.is_opened = true;
 
         if (this.has_mine)
             $(this.el).addClass("mine");
         else {
             $(this.el).addClass("open");
+            success_opened_counter++;
 
             // auto open all cells around, if there is no mines
             if (!this.mines_cells_around_count) {
@@ -56,14 +58,14 @@ class Cell {
                     let cell = this.around_cells[ i ];
 
                     if (!cell.is_opened)
-                        cell.open();
+                        success_opened_counter += cell.open();
                 }
             }
         }
 
         $(this.el).text(this.mines_cells_around_count);
 
-        return this.has_mine;
+        return success_opened_counter;
     }
 
 
