@@ -134,9 +134,8 @@ var minesweeper_app = new Vue({
             });
         },
         add_mines : function (start_cell) {
-            // TODO improve mines count generation algoritm, depend on field size
-            var count_min = Math.pow(this.level.size, 2) / 5;
-            var count_max = count_min * 1.5;
+            var count_min = Math.max(2, Math.ceil(Math.pow(this.level.size, 2) / 5));
+            var count_max = Math.floor(count_min * 1.5);
 
             var mines_count = this.randomIntFromInterval(count_min, count_max);
             var cells_objects = this.cells;
