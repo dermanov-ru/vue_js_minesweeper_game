@@ -55,6 +55,8 @@ class Cell {
             if (this.mines_cells_around_count) {
                 $(this.el).addClass( this.get_count_class(this.mines_cells_around_count) );
                 $(this.el).text(this.mines_cells_around_count);
+            } else {
+                $(this.el).text("");
             }
 
             // auto open all cells around, if there is no mines
