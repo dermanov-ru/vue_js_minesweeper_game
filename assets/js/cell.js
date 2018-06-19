@@ -105,4 +105,8 @@ class Cell {
         return this.has_mine && this.is_marked;
     }
 
+    is_fail_marked(){
+        return !this.has_mine && this.is_marked;
+    }
+
 }

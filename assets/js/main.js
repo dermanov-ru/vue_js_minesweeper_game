@@ -282,6 +282,10 @@ var minesweeper_app = new Vue({
 
                     if (!cell.is_demined())
                         cell.open();
+
+                    // final stat will include only demined cells count
+                    if (cell.is_fail_marked())
+                        this.marked_count--;
                 }
             }
         },
