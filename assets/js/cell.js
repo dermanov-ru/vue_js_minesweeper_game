@@ -11,7 +11,7 @@
 
 class Cell {
     constructor(el) {
-        this.el = el;
+        this.$el = $(el);
         this.has_mine = false;
         this.is_opened = false;
         this.is_marked = false;
@@ -23,14 +23,14 @@ class Cell {
 
     mark() {
         this.is_marked = true;
-        $(this.el).addClass("flag");
-        $(this.el).text("!");
+        this.$el.addClass("flag");
+        this.$el.text("!");
     }
 
     unmark() {
         this.is_marked = false;
-        $(this.el).removeClass("flag");
-        $(this.el).text("");
+        this.$el.removeClass("flag");
+        this.$el.text("");
     }
 
     reset() {
@@ -38,8 +38,8 @@ class Cell {
         this.is_marked = false;
         this.has_mine = false;
         this.mines_cells_around_count = 0;
-        $(this.el).attr("class","cell default");
-        $(this.el).text("");
+        this.$el.attr("class","cell default");
+        this.$el.text("");
     }
 
     open() {
@@ -47,16 +47,16 @@ class Cell {
         this.is_opened = true;
 
         if (this.has_mine)
-            $(this.el).addClass("mine");
+            this.$el.addClass("mine");
         else {
-            $(this.el).addClass("open");
+            this.$el.addClass("open");
             success_opened_counter++;
 
             if (this.mines_cells_around_count) {
-                $(this.el).addClass( this.get_count_class(this.mines_cells_around_count) );
-                $(this.el).text(this.mines_cells_around_count);
+                this.$el.addClass( this.get_count_class(this.mines_cells_around_count) );
+                this.$el.text(this.mines_cells_around_count);
             } else {
-                $(this.el).text("");
+                this.$el.text("");
             }
 
             // auto open all cells around, if there is no mines
