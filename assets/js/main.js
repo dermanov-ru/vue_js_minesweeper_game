@@ -56,7 +56,7 @@ var minesweeper_app = new Vue({
         }
     }, mounted : function() {
         // raped start normal game while develop mode
-        this.level = this.levels[ 3 ]; // unreal
+        this.level = this.levels[ 1 ]; // normal
         this.prepare_game();
     },
     methods : {
@@ -64,20 +64,20 @@ var minesweeper_app = new Vue({
             this.game_started = false;
             this.game_over = false;
             this.game_won = false;
-            this.game_time_seconds = 0;
             this.mines_count = 0;
             this.marked_count = 0;
             this.opened_count = 0;
 
             this.game_prepared = false;
             this.cells = [];
+
+            this.reset_timer();
         },
         repeat_game : function () {
             this.game_prepared = true;
             this.game_started = false;
             this.game_over = false;
             this.game_won = false;
-            this.game_time_seconds = 0;
             this.mines_count = 0;
             this.marked_count = 0;
             this.opened_count = 0;
@@ -86,6 +86,8 @@ var minesweeper_app = new Vue({
             for (let i = 0; i < this.cells.length; i++){
                 this.cells[ i ].reset();
             }
+
+            this.reset_timer();
         },
         prepare_game : function () {
             if (!this.level.code){
@@ -100,11 +102,19 @@ var minesweeper_app = new Vue({
         start_game : function (start_cell) {
             this.game_started = true;
             this.add_mines(start_cell);
-
-            // start game timer
+            this.start_timer();
+        },
+        start_timer : function() {
             this.timer = setInterval(function () {
                 minesweeper_app.game_time_seconds++;
             }, 1000);
+        },
+        stop_timer : function() {
+            clearInterval(this.timer);
+        },
+        reset_timer : function() {
+            this.game_time_seconds = 0;
+            clearInterval(this.timer);
         },
         init_cells : function () {
             // wait while filed render
@@ -260,7 +270,7 @@ var minesweeper_app = new Vue({
             }
         },
         end_game : function (win) {
-            clearInterval(this.timer);
+            this.stop_timer();
             this.game_over = true;
             this.game_won = win;
 
