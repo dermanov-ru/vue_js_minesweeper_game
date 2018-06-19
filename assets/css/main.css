@@ -51,6 +51,38 @@ a {
     font-weight: bold;
 }
 
+.minesweeper .cell.one {
+    color: blue;
+}
+
+.minesweeper .cell.two {
+    color: green;
+}
+
+.minesweeper .cell.three {
+    color: darkgoldenrod;
+}
+
+.minesweeper .cell.four {
+    color: palevioletred;
+}
+
+.minesweeper .cell.five {
+    color: darkorchid;
+}
+
+.minesweeper .cell.six {
+    color: steelblue;
+}
+
+.minesweeper .cell.seven {
+    color: tomato;
+}
+
+.minesweeper .cell.eight {
+    color: red;
+}
+
 .minesweeper .cell.default {
     background: grey;
 }

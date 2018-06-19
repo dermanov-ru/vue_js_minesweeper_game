@@ -38,7 +38,7 @@ class Cell {
         this.is_marked = false;
         this.has_mine = false;
         this.mines_cells_around_count = 0;
-        $(this.el).removeClass("open flag mine");
+        $(this.el).attr("class","cell default");
         $(this.el).text("");
     }
 
@@ -52,6 +52,11 @@ class Cell {
             $(this.el).addClass("open");
             success_opened_counter++;
 
+            if (this.mines_cells_around_count) {
+                $(this.el).addClass( this.get_count_class(this.mines_cells_around_count) );
+                $(this.el).text(this.mines_cells_around_count);
+            }
+
             // auto open all cells around, if there is no mines
             if (!this.mines_cells_around_count) {
                 for (let i = 0; i < this.around_cells.length; i++){
@@ -63,9 +68,23 @@ class Cell {
             }
         }
 
-        $(this.el).text(this.mines_cells_around_count);
 
         return success_opened_counter;
+    }
+
+    get_count_class(count_mines_around){
+        let map = {
+            1 : "one",
+            2 : "two",
+            3 : "three",
+            4 : "four",
+            5 : "five",
+            6 : "six",
+            7 : "seven",
+            8 : "eight",
+        };
+
+        return map[ count_mines_around ];
     }
 
 
