@@ -1,29 +1,54 @@
+[v-cloak] > * {
+    display: none;
+}
+
+[v-cloak]::before {
+    content: " ";
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==');
+}
+
+a {
+    font-size: 14px;
+}
+
+.green {
+    color: #28ad62;
+}
+
+.orange {
+    color: #e88f41 ;
+}
+
 .minesweeper {
     display: inline-block;
     text-align: center;
+    width: 500px;
 }
 
 .minesweeper .table {
-    margin: 3px;
     display: inline-block;
-    border: 1px dotted grey;
     border-radius: 5px;
     padding: 10px;
 }
 
 .minesweeper .row {
+    clear: both;
 }
 
 .minesweeper .cell {
     width: 25px;
     height: 25px;
     border: 1px solid grey;
-    display: inline-block;
     cursor: pointer;
-    margin: 0 2px;
+    margin: 2px;
     font-size: 14px;
     text-align: center;
     line-height: 25px;
+    float: left;
+    font-weight: bold;
 }
 
 .minesweeper .cell.default {
@@ -48,9 +73,11 @@
     text-align: center;
     border: 1px dotted grey;
     border-radius: 5px;
+    width: 500px;
+    margin-bottom: 2px;
 }
 
 .minesweeper .status_bar .item {
     display: inline-block;
-    padding: 10px;
+    padding: 10px 5px;
 }

@@ -94,9 +94,6 @@ bx_1c_import_lite.php
 
 /_html/
 
-# content
-!/exp/*cache*
-
 # config
 /lib/conf/*
 
