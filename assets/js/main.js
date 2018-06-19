@@ -55,9 +55,9 @@ var minesweeper_app = new Vue({
             return result;
         }
     }, mounted : function() {
-        // raped start normal game while develop mode
-        this.level = this.levels[ 1 ]; // normal
-        this.prepare_game();
+        // rapid start normal game by default
+        let level = this.levels[ 1 ]; // normal
+        this.prepare_game(level);
     },
     methods : {
         reset_game : function () {
@@ -89,11 +89,8 @@ var minesweeper_app = new Vue({
 
             this.reset_timer();
         },
-        prepare_game : function () {
-            if (!this.level.code){
-                alert("Нужно выбрать уровень!");
-                return;
-            }
+        prepare_game : function (level) {
+            this.level = level;
 
             this.game_prepared = true;
             this.game_over = false;
