@@ -82,4 +82,8 @@ class Cell {
         this.mines_cells_around_count = count;
     }
 
+    is_demined(){
+        return this.has_mine && this.is_marked;
+    }
+
 }

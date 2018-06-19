@@ -279,7 +279,9 @@ var minesweeper_app = new Vue({
             if (!win) {
                 for (let i = 0; i < this.cells.length; i++){
                     let cell = this.cells[ i ];
-                    cell.open();
+
+                    if (!cell.is_demined())
+                        cell.open();
                 }
             }
         },
