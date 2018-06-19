@@ -134,20 +134,23 @@ var minesweeper_app = new Vue({
             });
         },
         add_mines : function (start_cell) {
-            var count_min = Math.max(2, Math.ceil(Math.pow(this.level.size, 2) / 5));
+            var count_min = Math.max(2, Math.floor(Math.pow(this.level.size, 2) / 5));
             var count_max = Math.floor(count_min * 1.5);
 
             var mines_count = this.randomIntFromInterval(count_min, count_max);
             var cells_objects = this.cells;
-            var i = 0;
 
             // add mines
             let shuffled_cells = this.shuffle(cells_objects);
-            for (i = 0; i < mines_count; i++){
+            var i = 0;
+            var j = mines_count;
+
+            for (; i < j; i++){
                 let cell = shuffled_cells[ i ];
 
+                // skip start cell, replace it with next random cell
                 if (cell === start_cell){
-                    mines_count--;
+                    j++;
                     continue;
                 }
 
