@@ -38,10 +38,18 @@
         </div>
     
         <div v-if="game_prepared">
-            <p>Режим игры: {{level.title}} </p>
-            <p>Время игры: {{game_time_formated}} </p>
-            <p>Всего мин: {{mines_count}} </p>
-            <p>Отмечено флажком: {{marked_count}} </p>
+            <div class="status_bar titlle">
+                <div class="item" title="">Игра "Сапер"</div>
+                <div class="item sep">|</div>
+                <div class="item" title=""><a href="https://derm.su/48c" target="_blank">Правила игры</a></div>
+            </div>
+            <div class="status_bar">
+                <div class="item" title="Режим игры">{{level.title}}</div>
+                <div class="item sep">|</div>
+                <div class="item" title="Время игры">{{game_time_formated}}</div>
+                <div class="item sep">|</div>
+                <div class="item" title="Отмечено мин / Всего мин">{{marked_count}} / {{mines_count}}</div>
+            </div>
             
             <div v-if="game_over">
                 <p v-if="!game_won"><strong>Игра окончена, вы проиграли!</strong></p>

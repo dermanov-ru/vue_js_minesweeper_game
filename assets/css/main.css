@@ -1,9 +1,14 @@
 .minesweeper {
+    display: inline-block;
+    text-align: center;
 }
 
 .minesweeper .table {
     margin: 3px;
     display: inline-block;
+    border: 1px dotted grey;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .minesweeper .row {
@@ -37,4 +42,15 @@
 .minesweeper .cell.open {
     background: white;
     cursor: default;
+}
+
+.minesweeper .status_bar {
+    text-align: center;
+    border: 1px dotted grey;
+    border-radius: 5px;
+}
+
+.minesweeper .status_bar .item {
+    display: inline-block;
+    padding: 10px;
 }

@@ -48,9 +48,9 @@ var minesweeper_app = new Vue({
         game_time_formated : function () {
             var result = "";
 
-            result += Math.round(this.game_time_seconds / 3600) + "h ";
-            result += Math.round(this.game_time_seconds % 3600 / 60) + "m ";
-            result += Math.round(this.game_time_seconds % 60) + "s ";
+            result += Math.round(this.game_time_seconds / 3600) + " ч ";
+            result += Math.round(this.game_time_seconds % 3600 / 60) + " мин ";
+            result += Math.round(this.game_time_seconds % 60) + " сек ";
 
             return result;
         }
