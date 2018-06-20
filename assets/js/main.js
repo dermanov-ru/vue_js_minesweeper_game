@@ -236,10 +236,9 @@ var minesweeper_app = new Vue({
                 this.start_game(cell);
             }
 
-            var success_opened_count = cell.open(this.opened_count);
-            var has_mine = !success_opened_count;
+            let success_opened_count = cell.open(this.opened_count);
 
-            if (has_mine) {
+            if (cell.has_mine) {
                 this.end_game(false);
             } else {
                 this.opened_count += success_opened_count;
@@ -281,14 +280,15 @@ var minesweeper_app = new Vue({
                 for (let i = 0; i < this.cells.length; i++){
                     let cell = this.cells[ i ];
 
-                    if (!cell.is_demined()) {
+                    // final stat will include only demined cells count
+                    if (cell.is_fail_marked()){
                         cell.unmark();
-                        cell.open();
+                        this.marked_count--;
                     }
 
-                    // final stat will include only demined cells count
-                    if (cell.is_fail_marked())
-                        this.marked_count--;
+                    if (!cell.is_demined())
+                        cell.open();
+
                 }
             }
         },
