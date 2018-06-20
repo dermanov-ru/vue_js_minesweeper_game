@@ -12,25 +12,21 @@ var minesweeper_app = new Vue({
     data: {
         levels : [
             {
-                code : 'easy',
                 size : 3,
                 title : "Легкий",
                 min_window_size : 320,
             },
             {
-                code : 'normal',
                 size : 6,
                 title : "Нормальный",
                 min_window_size : 320,
             },
             {
-                code : 'hard',
                 size : 9,
                 title : "Сложный",
                 min_window_size : 320,
             },
             {
-                code : 'unreal',
                 size : 15,
                 title : "Очень сложный",
                 min_window_size : 520,
