@@ -15,21 +15,25 @@ var minesweeper_app = new Vue({
                 code : 'easy',
                 size : 3,
                 title : "Легкий",
+                min_window_size : 320,
             },
             {
                 code : 'normal',
                 size : 6,
                 title : "Нормальный",
+                min_window_size : 320,
             },
             {
                 code : 'hard',
                 size : 9,
                 title : "Сложный",
+                min_window_size : 320,
             },
             {
                 code : 'unreal',
                 size : 15,
                 title : "Очень сложный",
+                min_window_size : 520,
             }
         ],
         level : {},
@@ -90,8 +94,12 @@ var minesweeper_app = new Vue({
             this.reset_timer();
         },
         prepare_game : function (level) {
-            this.level = level;
+            if ($(window).width() < level.min_window_size){
+                alert("Слишком маленький экран! Выберите более легкий уровень.");
+                return;
+            }
 
+            this.level = level;
             this.game_prepared = true;
             this.game_over = false;
             this.init_cells();

@@ -39,11 +39,11 @@
             
             <div v-if="game_prepared">
                 <div class="status_bar" >
-                    <div class="item" title=""><a href="https://derm.su/48c" class="green" target="_blank">Правила игры</a></div>
+                    <div class="item" title=""><a href="https://derm.su/48c" class="green" target="_blank">Правила</a></div>
                     <div class="item sep">|</div>
-                    <a class="item green" href="#" @click.prevent="repeat_game" >Начать с начала</a>
+                    <a class="item green" href="#" @click.prevent="repeat_game" v-bind:class="{ orange: game_over }">Заново</a>
                     <div class="item sep">|</div>
-                    <a class="item green" href="#" @click.prevent="reset_game" >Выбрать другой уровень</a>
+                    <a class="item green" href="#" @click.prevent="reset_game" >Сложность</a>
                 </div>
 
                 <div class="status_bar" >
@@ -54,14 +54,9 @@
                     <div class="item" title="Отмечено мин / Всего мин"><i class="fa fa-bomb"></i> {{marked_count}} /  {{mines_count}}</div>
                 </div>
 
-                <div class="status_bar" >
-                    <div v-if="game_over">
-                        <div class="item " v-if="!game_won"><strong>Игра окончена, вы проиграли!</strong> <i class="far fa-frown"></i></div>
-                        <div class="item " v-if="game_won"><strong>Ура, вы победили!</strong> <i class="far fa-thumbs-up"></i></div>
-                    </div>
-                    <div v-if="!game_over">
-                        <div class="item " ><strong>Играйте, все в ваших руках!</strong></div>
-                    </div>
+                <div class="status_bar" v-if="game_over" >
+                    <div class="item " v-if="!game_won"><strong>Игра окончена, вы проиграли!</strong> <i class="far fa-frown"></i></div>
+                    <div class="item " v-if="game_won"><strong>Ура, вы победили!</strong> <i class="far fa-thumbs-up"></i></div>
                 </div>
 
                 <div class="table">
@@ -76,7 +71,7 @@
             <div class="status_bar" >
                 <a class="item orange" href="https://dermanov.ru#from=minesweeper" target="_blank">Об авторе</a>
                 <div class="item sep">|</div>
-                <i class="fab fa-github"></i> <a class="item orange" href="https://github.com/dermanov-ru/vue_js_minesweeper_game" target="_blank" >Fork me on GitHub</a>
+                <i class="fab fa-github"></i> <a class="item orange" href="https://github.com/dermanov-ru/vue_js_minesweeper_game" target="_blank" >GitHub</a>
             </div>
         </div>
     </div>

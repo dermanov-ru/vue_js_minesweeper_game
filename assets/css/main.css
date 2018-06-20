@@ -23,9 +23,9 @@ a {
 }
 
 .minesweeper {
-    display: inline-block;
     text-align: center;
-    width: 500px;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .minesweeper .table {
@@ -111,8 +111,8 @@ a {
     text-align: center;
     border: 1px dotted grey;
     border-radius: 5px;
-    width: 500px;
     margin-bottom: 2px;
+    padding: 0 5px;
 }
 
 .minesweeper .status_bar .item {
