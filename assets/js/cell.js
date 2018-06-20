@@ -64,7 +64,7 @@ class Cell {
                 for (let i = 0; i < this.around_cells.length; i++){
                     let cell = this.around_cells[ i ];
 
-                    if (!cell.is_opened)
+                    if (!(cell.is_opened || cell.is_marked))
                         success_opened_counter += cell.open();
                 }
             }
