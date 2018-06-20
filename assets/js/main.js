@@ -7,7 +7,7 @@
  *
  */
 
-var minesweeper_app = new Vue({
+new Vue({
     el: '#minesweeper',
     data: {
         levels : [
@@ -106,8 +106,10 @@ var minesweeper_app = new Vue({
             this.start_timer();
         },
         start_timer : function() {
+            let minesweeper_app_context = this;
+
             this.timer = setInterval(function () {
-                minesweeper_app.game_time_seconds++;
+                minesweeper_app_context.game_time_seconds++;
             }, 1000);
         },
         stop_timer : function() {
@@ -236,7 +238,7 @@ var minesweeper_app = new Vue({
                 this.start_game(cell);
             }
 
-            let success_opened_count = cell.open(this.opened_count);
+            let success_opened_count = cell.open(true);
 
             if (cell.has_mine) {
                 this.end_game(false);
@@ -277,18 +279,24 @@ var minesweeper_app = new Vue({
             this.game_won = win;
 
             if (!win) {
+                let shuffled_cells = this.shuffle(this.cells);
+                let minesweeper_app_context = this;
+
                 for (let i = 0; i < this.cells.length; i++){
-                    let cell = this.cells[ i ];
+                    let cell = shuffled_cells[ i ];
 
-                    // final stat will include only demined cells count
-                    if (cell.is_fail_marked()){
-                        cell.unmark();
-                        this.marked_count--;
-                    }
+                    if (cell.is_demined())
+                        continue;
 
-                    if (!cell.is_demined())
-                        cell.open();
-
+                    setTimeout(function () {
+                        // final stat will include only demined cells count
+                        if (cell.is_fail_marked()) {
+                            minesweeper_app_context.marked_count--;
+                            cell.show_fail();
+                        } else {
+                            cell.open(false);
+                        }
+                    }, 30 * i);
                 }
             }
         },

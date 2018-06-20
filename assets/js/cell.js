@@ -42,7 +42,12 @@ class Cell {
         this.$el.text("");
     }
 
-    open() {
+    show_fail() {
+        this.$el.addClass("failed");
+        this.$el.html('<i class="fas fa-times-circle animated  bounceIn"></i>');
+    }
+
+    open(open_around) {
         let success_opened_counter = 0;
         this.is_opened = true;
         this.$el.removeClass("closed");
@@ -62,12 +67,14 @@ class Cell {
             }
 
             // auto open all cells around, if there is no mines
-            if (!this.mines_cells_around_count) {
-                for (let i = 0; i < this.around_cells.length; i++){
-                    let cell = this.around_cells[ i ];
+            if (open_around) {
+                if (!this.mines_cells_around_count) {
+                    for (let i = 0; i < this.around_cells.length; i++){
+                        let cell = this.around_cells[ i ];
 
-                    if (!(cell.is_opened || cell.is_marked))
-                        success_opened_counter += cell.open();
+                        if (!(cell.is_opened || cell.is_marked))
+                            success_opened_counter += cell.open(true);
+                    }
                 }
             }
         }

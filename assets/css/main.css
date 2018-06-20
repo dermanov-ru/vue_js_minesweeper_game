@@ -66,10 +66,13 @@
     color: darkorange;
     background: transparent;
 }
-
 .minesweeper .cell.flag i {
     z-index: -1;
     position: relative;
+}
+
+.minesweeper .cell.failed {
+    color: black;
 }
 
 .minesweeper .cell.mine {
@@ -84,6 +87,7 @@
 
 .minesweeper .game_losed .cell{opacity: 0.5;}
 .minesweeper .game_losed .cell.mine,
+.minesweeper .game_losed .cell.fail,
 .minesweeper .game_losed .cell.flag
 {opacity: 1;}
 
