@@ -48,7 +48,7 @@ class Cell {
 
         if (this.has_mine){
             this.$el.addClass("mine");
-            this.$el.html('<i class="fal fa-bomb"></i>');
+            this.$el.html('<i class="fa fal fa-bomb"></i>');
         } else {
             this.$el.addClass("open");
             success_opened_counter++;
