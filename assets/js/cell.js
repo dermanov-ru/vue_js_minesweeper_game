@@ -24,7 +24,7 @@ class Cell {
     mark() {
         this.is_marked = true;
         this.$el.addClass("flag");
-        this.$el.text("!");
+        this.$el.html('<i class="fa fa-flag-checkered"></i>');
     }
 
     unmark() {
@@ -46,9 +46,10 @@ class Cell {
         let success_opened_counter = 0;
         this.is_opened = true;
 
-        if (this.has_mine)
+        if (this.has_mine){
             this.$el.addClass("mine");
-        else {
+            this.$el.html('<i class="fal fa-bomb"></i>');
+        } else {
             this.$el.addClass("open");
             success_opened_counter++;
 

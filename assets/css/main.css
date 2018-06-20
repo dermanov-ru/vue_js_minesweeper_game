@@ -88,12 +88,18 @@ a {
 }
 
 .minesweeper .cell.flag {
-    background: darkorange;
+    color: darkorange;
+    background: transparent;
+}
+
+.minesweeper .cell.flag i {
+    z-index: -1;
+    position: relative;
 }
 
 .minesweeper .cell.mine {
-    background: red;
-    color: transparent;
+    color: red;
+    background: white;
 }
 
 .minesweeper .cell.open {
