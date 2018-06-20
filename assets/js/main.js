@@ -285,7 +285,7 @@ new Vue({
                 for (let i = 0; i < this.cells.length; i++){
                     let cell = shuffled_cells[ i ];
 
-                    if (cell.is_demined())
+                    if (cell.is_demined() || cell.is_opened)
                         continue;
 
                     setTimeout(function () {
