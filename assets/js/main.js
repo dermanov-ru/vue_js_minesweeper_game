@@ -12,17 +12,17 @@ var minesweeper_app = new Vue({
     data: {
         levels : [
             {
-                size : 3,
+                size : 4,
                 title : "Легкий",
                 min_window_size : 320,
             },
             {
-                size : 6,
+                size : 7,
                 title : "Нормальный",
                 min_window_size : 320,
             },
             {
-                size : 9,
+                size : 10,
                 title : "Сложный",
                 min_window_size : 320,
             },
@@ -281,8 +281,10 @@ var minesweeper_app = new Vue({
                 for (let i = 0; i < this.cells.length; i++){
                     let cell = this.cells[ i ];
 
-                    if (!cell.is_demined())
+                    if (!cell.is_demined()) {
+                        cell.unmark();
                         cell.open();
+                    }
 
                     // final stat will include only demined cells count
                     if (cell.is_fail_marked())

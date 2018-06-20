@@ -1,8 +1,8 @@
-[v-cloak] > * {
+.minesweeper[v-cloak] > * {
     display: none;
 }
 
-[v-cloak]::before {
+.minesweeper[v-cloak]::before {
     content: " ";
     display: block;
     width: 16px;
@@ -10,28 +10,27 @@
     background-image: url('data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==');
 }
 
-a {
+.minesweeper a {
     font-size: 14px;
 }
 
-.green {
+.minesweeper .green {
     color: #28ad62;
 }
 
-.orange {
+.minesweeper .orange {
     color: #e88f41 ;
 }
 
 .minesweeper {
     text-align: center;
-    max-width: 500px;
+    max-width: 440px;
     margin: 0 auto;
 }
 
 .minesweeper .table {
     display: inline-block;
-    border-radius: 5px;
-    padding: 10px;
+    padding: 10px 0;
 }
 
 .minesweeper .row {
@@ -43,7 +42,7 @@ a {
     height: 25px;
     border: 1px solid grey;
     cursor: pointer;
-    margin: 2px;
+    margin: 1px;
     font-size: 14px;
     text-align: center;
     line-height: 25px;
@@ -51,41 +50,16 @@ a {
     font-weight: bold;
 }
 
-.minesweeper .cell.one {
-    color: blue;
-}
+.minesweeper .cell.one {color: blue;}
+.minesweeper .cell.two {color: green;}
+.minesweeper .cell.three {color: darkgoldenrod;}
+.minesweeper .cell.four {color: palevioletred;}
+.minesweeper .cell.five {color: darkorchid;}
+.minesweeper .cell.six {color: steelblue;}
+.minesweeper .cell.seven {color: tomato;}
+.minesweeper .cell.eight {color: red;}
 
-.minesweeper .cell.two {
-    color: green;
-}
-
-.minesweeper .cell.three {
-    color: darkgoldenrod;
-}
-
-.minesweeper .cell.four {
-    color: palevioletred;
-}
-
-.minesweeper .cell.five {
-    color: darkorchid;
-}
-
-.minesweeper .cell.six {
-    color: steelblue;
-}
-
-.minesweeper .cell.seven {
-    color: tomato;
-}
-
-.minesweeper .cell.eight {
-    color: red;
-}
-
-.minesweeper .cell.default {
-    background: grey;
-}
+.minesweeper .cell.closed {background: grey;}
 
 .minesweeper .cell.flag {
     color: darkorange;
@@ -107,6 +81,11 @@ a {
     cursor: default;
 }
 
+.minesweeper .game_losed .cell{opacity: 0.5;}
+.minesweeper .game_losed .cell.mine,
+.minesweeper .game_losed .cell.flag
+{opacity: 1;}
+
 .minesweeper .status_bar {
     text-align: center;
     border: 1px dotted grey;
@@ -117,5 +96,6 @@ a {
 
 .minesweeper .status_bar .item {
     display: inline-block;
-    padding: 10px 5px;
+    padding: 10px 3px;
+    font-size: 15px;
 }

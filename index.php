@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="/assets/css/main.css?v=<?=filemtime($_SERVER["DOCUMENT_ROOT"] . "/assets/css/main.css")?>" />
 </head>
 <body>
@@ -32,7 +33,7 @@
                     <p><strong>Выберите уровень</strong></p>
                     
                     <div class="line" v-for="level in levels">
-                        <a class="item green" href="#"  @click.prevent="prepare_game(level)" >{{ level.title }}</a>
+                        <a class="item green" href="#"  @click.prevent="prepare_game(level)" >{{ level.title }} ({{ level.size }} x {{ level.size }})</a>
                     </div>
                 </div>
             </div>
@@ -54,24 +55,24 @@
                     <div class="item" title="Отмечено мин / Всего мин"><i class="fa fa-bomb"></i> {{marked_count}} /  {{mines_count}}</div>
                 </div>
 
+                <div class="table" v-bind:class="{ game_losed: game_over && !game_won }">
+                    <template  v-for="item in level.size">
+                        <div class="row">
+                            <div v-for="item1 in level.size" class="cell closed" @click.left="open_cell" @click.right.prevent="mark_cell"></div>
+                        </div>
+                    </template>
+                </div>
+
                 <div class="status_bar" v-if="game_over" >
                     <div class="item " v-if="!game_won"><strong>Игра окончена, вы проиграли!</strong> <i class="far fa-frown"></i></div>
                     <div class="item " v-if="game_won"><strong>Ура, вы победили!</strong> <i class="far fa-thumbs-up"></i></div>
                 </div>
-
-                <div class="table">
-                    <template  v-for="item in level.size">
-                        <div class="row">
-                            <div v-for="item1 in level.size" class="cell default" @click.left="open_cell" @click.right.prevent="mark_cell"></div>
-                        </div>
-                    </template>
-                </div>
             </div>
 
             <div class="status_bar" >
-                <a class="item orange" href="https://dermanov.ru#from=minesweeper" target="_blank">Об авторе</a>
+                <a class="item orange" href="https://dermanov.ru#from=minesweeper" target="_blank">Марк Дерманов</a>
                 <div class="item sep">|</div>
-                <i class="fab fa-github"></i> <a class="item orange" href="https://github.com/dermanov-ru/vue_js_minesweeper_game" target="_blank" >GitHub</a>
+                <a class="item orange" href="https://github.com/dermanov-ru/vue_js_minesweeper_game" target="_blank" >Fork me on GitHub</a>
             </div>
         </div>
     </div>

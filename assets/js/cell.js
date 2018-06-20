@@ -38,17 +38,18 @@ class Cell {
         this.is_marked = false;
         this.has_mine = false;
         this.mines_cells_around_count = 0;
-        this.$el.attr("class","cell default");
+        this.$el.attr("class","cell closed");
         this.$el.text("");
     }
 
     open() {
         let success_opened_counter = 0;
         this.is_opened = true;
+        this.$el.removeClass("closed");
 
         if (this.has_mine){
             this.$el.addClass("mine");
-            this.$el.html('<i class="fa fal fa-bomb"></i>');
+            this.$el.html('<i class="fa fal fa-bomb animated  zoomIn"></i>');
         } else {
             this.$el.addClass("open");
             success_opened_counter++;
