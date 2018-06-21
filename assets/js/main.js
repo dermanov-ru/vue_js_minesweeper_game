@@ -289,6 +289,10 @@ new Vue({
                         continue;
 
                     setTimeout(function () {
+                        // if user press "restart" button untill animation end
+                        if (!minesweeper_app_context.game_over)
+                            return;
+
                         // final stat will include only demined cells count
                         if (cell.is_fail_marked()) {
                             minesweeper_app_context.marked_count--;
