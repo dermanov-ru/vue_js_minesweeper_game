@@ -288,18 +288,21 @@ new Vue({
                     if (cell.is_demined() || cell.is_opened)
                         continue;
 
+                    if (cell.is_fail_marked()) {
+                        // final stat will include only demined cells count
+                        minesweeper_app_context.marked_count--;
+
+                        // show failed cells instantly to do not wait end of opening animation
+                        cell.show_fail();
+                        continue;
+                    }
+
                     setTimeout(function () {
                         // if user press "restart" button untill animation end
                         if (!minesweeper_app_context.game_over)
                             return;
 
-                        // final stat will include only demined cells count
-                        if (cell.is_fail_marked()) {
-                            minesweeper_app_context.marked_count--;
-                            cell.show_fail();
-                        } else {
-                            cell.open(false);
-                        }
+                        cell.open(false);
                     }, 30 * i);
                 }
             }
