@@ -12,8 +12,13 @@ new Vue({
     data: {
         levels : [
             {
-                size : 4,
-                title : "Легкий",
+                size : 3,
+                title : "Детский",
+                min_window_size : 320,
+            },
+            {
+                size : 5,
+                title : "Разминка",
                 min_window_size : 320,
             },
             {
@@ -29,11 +34,16 @@ new Vue({
             {
                 size : 15,
                 title : "Очень сложный",
-                min_window_size : 520,
+                min_window_size : 450,
+            },
+            {
+                size : 19,
+                title : "Нереальный",
+                min_window_size : 560,
             }
         ],
         level : {},
-        game_prepared : false,
+        is_level_selected : false,
         game_started : false,
         game_over : false,
         game_won : false,
@@ -60,7 +70,7 @@ new Vue({
         this.prepare_game(level);
     },
     methods : {
-        reset_game : function () {
+        select_game_level : function () {
             this.game_started = false;
             this.game_over = false;
             this.game_won = false;
@@ -68,13 +78,13 @@ new Vue({
             this.marked_count = 0;
             this.opened_count = 0;
 
-            this.game_prepared = false;
+            this.is_level_selected = false;
             this.cells = [];
 
             this.reset_timer();
         },
-        repeat_game : function () {
-            this.game_prepared = true;
+        reset_game : function () {
+            this.is_level_selected = true;
             this.game_started = false;
             this.game_over = false;
             this.game_won = false;
@@ -90,13 +100,10 @@ new Vue({
             this.reset_timer();
         },
         prepare_game : function (level) {
-            if ($(window).width() < level.min_window_size){
-                alert("Слишком маленький экран! Выберите более легкий уровень.");
-                return;
-            }
-
             this.level = level;
-            this.game_prepared = true;
+            $(this.$el).css("width", level.min_window_size + "px");
+
+            this.is_level_selected = true;
             this.game_over = false;
             this.init_cells();
         },

@@ -28,7 +28,7 @@
                 <div class="item" title="">Игра "Сапер"</div>
             </div>
 
-            <div v-if="!game_prepared">
+            <div v-if="!is_level_selected">
                 <div class="status_bar">
                     <p><strong>Выберите уровень</strong></p>
                     
@@ -38,20 +38,18 @@
                 </div>
             </div>
             
-            <div v-if="game_prepared">
+            <div v-if="is_level_selected">
                 <div class="status_bar" >
                     <div class="item" title=""><a href="https://derm.su/48c" class="green" target="_blank">Правила</a></div>
                     <div class="item sep">|</div>
-                    <a class="item green" href="#" @click.prevent="repeat_game" v-bind:class="{ orange: game_over }">Заново</a>
+                    <a class="item green" href="#" @click.prevent="reset_game" v-bind:class="{ orange: game_over }">Заново</a>
                     <div class="item sep">|</div>
-                    <a class="item green" href="#" @click.prevent="reset_game" >Сложность</a>
+                    <a class="item green" href="#" @click.prevent="select_game_level" >Сложность</a>
                 </div>
 
                 <div class="status_bar" >
                     <div class="item" title="Режим игры"><i class="fas fa-signal"></i> {{level.title}}</div>
-                    <div class="item sep">|</div>
                     <div class="item" title="Время игры"><i class="far fa-clock"></i> {{game_time_formated}}</div>
-                    <div class="item sep">|</div>
                     <div class="item" title="Отмечено мин / Всего мин"><i class="fa fa-bomb"></i> {{marked_count}} /  {{mines_count}}</div>
                 </div>
 
