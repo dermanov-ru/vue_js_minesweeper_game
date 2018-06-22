@@ -40,11 +40,11 @@
             
             <div v-if="is_level_selected">
                 <div class="status_bar" >
-                    <div class="item" title=""><a href="https://derm.su/48c" class="green" target="_blank">Правила</a></div>
+                    <a href="https://derm.su/48c" class="item green" target="_blank">Правила</a>
+                    <div class="item sep">|</div>
+                    <a class="item green" href="#" @click.prevent="select_game_level" >Уровень</a>
                     <div class="item sep">|</div>
                     <a class="item green" href="#" @click.prevent="reset_game" v-bind:class="{ orange: game_over }">Заново</a>
-                    <div class="item sep">|</div>
-                    <a class="item green" href="#" @click.prevent="select_game_level" >Сложность</a>
                 </div>
 
                 <div class="status_bar" >
