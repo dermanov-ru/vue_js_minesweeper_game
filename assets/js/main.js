@@ -7,6 +7,10 @@
  *
  */
 
+// if user income from shared url from fb - remove special page params
+if (location.search)
+    history.pushState("", "", "/");
+
 new Vue({
     el: '#minesweeper',
     data: {
@@ -91,6 +95,7 @@ new Vue({
             return result;
         }
     }, mounted : function() {
+
         // rapid start normal game by default
         let level = this.levels[ 1 ]; // normal
         this.prepare_game(level);
