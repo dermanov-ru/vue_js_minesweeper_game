@@ -12,9 +12,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Игра "Сапёр" на vue.js, онлайн, бесплатно, без смс</title>
+    <title>Игра "Сапёр" на vue.js</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content='Игра "Сапёр" на vue.js' />
+    <meta property="og:image" content="http://minesweeper.dermanov.ru/i/screen/default_3.png" />
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
