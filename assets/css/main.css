@@ -89,12 +89,6 @@ body{
     cursor: default;
 }
 
-.minesweeper .game_losed .cell{opacity: 0.5;}
-.minesweeper .game_losed .cell.mine,
-.minesweeper .game_losed .cell.fail,
-.minesweeper .game_losed .cell.flag
-{opacity: 1;}
-
 .minesweeper .status_bar {
     text-align: center;
     border: 1px dotted grey;
