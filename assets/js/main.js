@@ -286,6 +286,7 @@ new Vue({
             if (!win) {
                 let shuffled_cells = this.shuffle(this.cells);
                 let minesweeper_app_context = this;
+                let animation_speed = this.level.size > 10 ? 5 : 20;
 
                 for (let i = 0; i < this.cells.length; i++){
                     let cell = shuffled_cells[ i ];
@@ -308,7 +309,7 @@ new Vue({
                             return;
 
                         cell.open(false);
-                    }, 30 * i);
+                    }, animation_speed * i);
                 }
             }
         },
