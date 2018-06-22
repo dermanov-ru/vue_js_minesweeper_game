@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/assets/css/main.css?v=<?=filemtime($_SERVER["DOCUMENT_ROOT"] . "/assets/css/main.css")?>" />
 </head>
 <body>
-    <div id="minesweeper" class="minesweeper" v-cloak>
+    <div id="minesweeper" class="minesweeper" v-cloak v-bind:style="{ width: level.min_window_size + 'px' }">
         
         <div >
             <div class="status_bar titlle">

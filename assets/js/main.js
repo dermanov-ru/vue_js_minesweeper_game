@@ -101,8 +101,6 @@ new Vue({
         },
         prepare_game : function (level) {
             this.level = level;
-            $(this.$el).css("width", level.min_window_size + "px");
-
             this.is_level_selected = true;
             this.game_over = false;
             this.init_cells();
