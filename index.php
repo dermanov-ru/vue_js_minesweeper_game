@@ -79,5 +79,10 @@
     <script src="https://unpkg.com/vue"></script>
     <script src="/assets/js/cell.js?v=<?=filemtime($_SERVER["DOCUMENT_ROOT"] . "/assets/js/cell.js")?>"></script>
     <script src="/assets/js/main.js?v=<?=filemtime($_SERVER["DOCUMENT_ROOT"] . "/assets/js/main.js")?>"></script>
+
+    <?
+    if (file_exists(__DIR__ . "/counters.php"))
+        require __DIR__ . "/counters.php";
+    ?>
 </body>
 </html>

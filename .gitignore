@@ -63,3 +63,5 @@ adminer.css
 
 #phinx
 phinx.yml
+
+/counters.php
