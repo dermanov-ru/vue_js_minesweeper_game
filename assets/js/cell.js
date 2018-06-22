@@ -44,7 +44,7 @@ class Cell {
 
     show_fail() {
         this.$el.addClass("failed");
-        this.$el.html('<i class="fas fa-times-circle animated  bounceIn"></i>');
+        this.$el.html('<i class="fa fa-times-circle animated  bounceIn"></i>');
     }
 
     open(open_around) {
@@ -54,7 +54,7 @@ class Cell {
 
         if (this.has_mine){
             this.$el.addClass("mine");
-            this.$el.html('<i class="fa fal fa-bomb animated  zoomIn"></i>');
+            this.$el.html('<i class="fa fa-bomb animated  zoomIn"></i>');
         } else {
             this.$el.addClass("open");
             success_opened_counter++;

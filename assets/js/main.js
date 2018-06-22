@@ -53,8 +53,34 @@ new Vue({
         mines_count : 0,
         marked_count : 0,
         opened_count : 0,
+
+        game_screen_url : "",
+        screen_saved : false,
+        screening : false,
     },
     computed : {
+        share_url_vk : function(){
+            let comment = (this.game_won ? "Я выиграл " : "Я проиграл ") + "в игре \"Сапёр\" на vue.js :) Попробуй и ты!";
+            let shareUrl = location.origin + "&game_over=" + (this.game_over ? "Y" : "N") + "&game_won=" + (this.game_won ? "Y" : "N");
+            console.log("share_url_vk", shareUrl);
+
+            url  = 'http://vkontakte.ru/share.php?';
+            url += 'url='          + encodeURIComponent(location.origin);
+            url += '&title='       + encodeURIComponent(comment) ;
+            url += '&image='       + encodeURIComponent(location.origin + "/upload/" + this.game_screen_url);
+            url += '&noparse=true';
+
+            return url;
+        },
+        share_url_fb : function(){
+            let shareUrl = location.origin + "?screen=" + this.game_screen_url + "&game_over=" + (this.game_over ? "Y" : "N") + "&game_won=" + (this.game_won ? "Y" : "N");
+            console.log("share_url_fb", shareUrl);
+
+            url  = 'http://www.facebook.com/sharer.php?s=100';
+            url += '&u=' + encodeURIComponent(shareUrl);
+
+            return url;
+        },
         game_time_formated : function () {
             var result = "";
 
@@ -70,6 +96,38 @@ new Vue({
         this.prepare_game(level);
     },
     methods : {
+        save_screen : function() {
+            this.screening = true;
+            let minesweeper_app_context = this;
+
+            // fix of wrong screenshoting
+            $(".animated").removeClass("animated");
+
+            html2canvas(document.querySelector("#minesweeper")).then(canvas => {
+              // document.body.appendChild(canvas)
+
+                var imagedata = canvas.toDataURL('image/png');
+                var imgdata = imagedata.replace(/^data:image\/(png|jpg);base64,/, "");
+
+                let formData = new FormData();
+                formData.append('imgdata', imgdata);
+
+                fetch('/save_screen.php', {method: 'POST', body: formData,})
+                    .then(function (data) {
+                        data.json().then(function(data) {
+                            minesweeper_app_context.screen_saved = true;
+                            minesweeper_app_context.screening = false;
+                            minesweeper_app_context.game_screen_url = data.image;
+                        });
+
+                        console.log('Request success: ', data);
+                    })
+                    .catch(function (error) {
+                        console.log('Request failure: ', error);
+                        alert("Что-то пошло не так :(");
+                    });
+            });
+        },
         select_game_level : function () {
             this.game_started = false;
             this.game_over = false;
@@ -82,6 +140,8 @@ new Vue({
             this.cells = [];
 
             this.reset_timer();
+
+            this.screen_saved = false;
         },
         reset_game : function () {
             this.is_level_selected = true;
@@ -98,6 +158,8 @@ new Vue({
             }
 
             this.reset_timer();
+
+            this.screen_saved = false;
         },
         prepare_game : function (level) {
             this.level = level;

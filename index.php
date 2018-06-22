@@ -66,10 +66,22 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/functions.php";
                 </div>
 
                 <div class="status_bar" v-if="game_over" >
-                    <div class="item " v-if="!game_won"><strong>Игра окончена, вы проиграли!</strong> <i class="far fa-frown"></i></div>
+                    <div class="item " v-if="!game_won"><strong>Вы проиграли!</strong> <i class="far fa-frown"></i></div>
                     <div class="item " v-if="game_won"><strong>Ура, вы победили!</strong> <i class="far fa-thumbs-up"></i></div>
                 </div>
+                
+                <div class="status_bar" v-if="game_over">
+                    <div class="item " v-if="!screen_saved && !screening"><a href="#" class="green" @click.prevent="save_screen">Поделитесь скриншотом своей игры :)</a></div>
+                    <div class="item " v-if="screening">Подождите, делаем скрин...</a></div>
+                    
+                    <div class="" v-if="screen_saved">
+                        Поделиться
+                        <a class="item" style="color: #4a76a8" :href="share_url_vk" target="_blank" ><i class="fab fa-vk" style="margin-right: 5px;"></i>Vk</a>
+                        <a class="item " style="color: #4267b2" :href="share_url_fb" target="_blank" ><i class="fab fa-facebook-square" style="margin-right: 5px;"></i>Fb</a>
+                    </div>
+                </div>
             </div>
+
 
             <div class="status_bar" >
                 <a class="item orange" href="https://dermanov.ru#from=minesweeper" target="_blank">Марк Дерманов</a>
@@ -83,6 +95,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/functions.php";
     <script src="https://unpkg.com/vue"></script>
     <script src="/assets/js/cell.js?v=<?=filemtime($_SERVER["DOCUMENT_ROOT"] . "/assets/js/cell.js")?>"></script>
     <script src="/assets/js/main.js?v=<?=filemtime($_SERVER["DOCUMENT_ROOT"] . "/assets/js/main.js")?>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
 
     <?
     if (file_exists(__DIR__ . "/counters.php"))
