@@ -23,11 +23,16 @@ function getOgTitle(){
 }
 
 function getOgImage(){
-    $screen = "/upload/" . $_REQUEST["screen"];
-    $filename = $_SERVER["DOCUMENT_ROOT"] . $screen;
+    $screen = $_REQUEST["screen"];
+    
+    if (!$screen)
+        return "/i/screen/default_3.png";
+    
+    $screenPath = "/upload/" . $screen;
+    $filename = $_SERVER["DOCUMENT_ROOT"] . $screenPath;
     
     if (file_exists( $filename ))
-        $result = $screen;
+        $result = $screenPath;
     else
         $result = "/i/screen/default_3.png";
     
