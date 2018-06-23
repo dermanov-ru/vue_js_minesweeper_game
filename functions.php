@@ -10,13 +10,13 @@
  
 function getOgTitle(){
     if (!$_REQUEST["game_won"]) {
-        return 'Игра "Сапёр" на vue.js';
+        return 'Игра «Сапёр» на vue.js';
     }
     
     if ($_REQUEST["game_won"] == "Y") {
-        $result = 'Я выиграл в игре "Сапёр" на vue.js :) Попробуй и ты!';
+        $result = 'Я выиграл в игре «Сапёр» на vue.js :) Попробуй и ты!';
     } else if ($_REQUEST["game_won"] == "N") {
-        $result = 'Я проиграл в игре "Сапёр" на vue.js :) Попробуй и ты!';
+        $result = 'Я проиграл в игре «Сапёр» на vue.js :) Попробуй и ты!';
     }
     
     return $result;

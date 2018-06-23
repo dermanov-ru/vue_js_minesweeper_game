@@ -13,7 +13,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/functions.php";
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Игра "Сапёр" на vue.js</title>
+    <title>Игра «Сапёр» на vue.js</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

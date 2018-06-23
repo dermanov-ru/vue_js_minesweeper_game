@@ -64,7 +64,7 @@ new Vue({
     },
     computed : {
         share_url_vk : function(){
-            let comment = (this.game_won ? "Я выиграл " : "Я проиграл ") + "в игре \"Сапёр\" на vue.js :) Попробуй и ты!";
+            let comment = (this.game_won ? "Я выиграл " : "Я проиграл ") + "в игре «Сапёр» на vue.js :) Попробуй и ты!";
             let shareUrl = location.origin + "&game_over=" + (this.game_over ? "Y" : "N") + "&game_won=" + (this.game_won ? "Y" : "N");
             console.log("share_url_vk", shareUrl);
 
