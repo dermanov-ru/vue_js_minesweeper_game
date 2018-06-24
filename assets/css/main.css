@@ -33,12 +33,12 @@ body{
     margin: 0 auto;
 }
 
-.minesweeper .table {
+.minesweeper_table {
     display: inline-block;
     padding: 10px 0;
 }
 
-.minesweeper .row {
+.minesweeper_row {
     clear: both;
 }
 
@@ -89,7 +89,7 @@ body{
     cursor: default;
 }
 
-.minesweeper .status_bar {
+.minesweeper_status_bar {
     text-align: center;
     border: 1px dotted grey;
     border-radius: 5px;
@@ -97,7 +97,7 @@ body{
     padding: 0 5px;
 }
 
-.minesweeper .status_bar .item {
+.minesweeper_status_bar_item {
     display: inline-block;
     padding: 10px 3px;
     font-size: 15px;

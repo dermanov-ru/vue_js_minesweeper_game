@@ -28,65 +28,65 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/functions.php";
     <div id="minesweeper" class="minesweeper" v-cloak v-bind:style="{ width: level.min_window_size + 'px' }">
         
         <div >
-            <div class="status_bar titlle">
-                <div class="item" title="">Игра "Сапер"</div>
+            <div class="minesweeper_status_bar titlle">
+                <div class="minesweeper_status_bar_item" title="">Игра "Сапер"</div>
             </div>
 
             <div v-if="!is_level_selected">
-                <div class="status_bar">
+                <div class="minesweeper_status_bar">
                     <p><strong>Выберите уровень</strong></p>
                     
                     <div class="line" v-for="level in levels">
-                        <a class="item green" href="#"  @click.prevent="prepare_game(level)" >{{ level.title }} ({{ level.size }} x {{ level.size }})</a>
+                        <a class="minesweeper_status_bar_item green" href="#"  @click.prevent="prepare_game(level)" >{{ level.title }} ({{ level.size }} x {{ level.size }})</a>
                     </div>
                 </div>
             </div>
             
             <div v-if="is_level_selected">
-                <div class="status_bar" >
-                    <a href="https://derm.su/48c" class="item green" target="_blank">Правила</a>
-                    <div class="item sep">|</div>
-                    <a class="item green" href="#" @click.prevent="select_game_level" >Уровень</a>
-                    <div class="item sep">|</div>
-                    <a class="item green" href="#" @click.prevent="reset_game" v-bind:class="{ orange: game_over }">Заново</a>
+                <div class="minesweeper_status_bar" >
+                    <a href="https://derm.su/48c" class="minesweeper_status_bar_item green" target="_blank">Правила</a>
+                    <div class="minesweeper_status_bar_item minesweeper_status_bar_item_sep">|</div>
+                    <a class="minesweeper_status_bar_item green" href="#" @click.prevent="select_game_level" >Уровень</a>
+                    <div class="minesweeper_status_bar_item minesweeper_status_bar_item_sep">|</div>
+                    <a class="minesweeper_status_bar_item green" href="#" @click.prevent="reset_game" v-bind:class="{ orange: game_over }">Заново</a>
                 </div>
 
-                <div class="status_bar" >
-                    <div class="item" title="Режим игры"><i class="fas fa-signal"></i> {{level.title}}</div>
-                    <div class="item" title="Время игры"><i class="far fa-clock"></i> {{game_time_formated}}</div>
-                    <div class="item" title="Отмечено мин / Всего мин"><i class="fa fa-bomb"></i> {{marked_count}} /  {{mines_count}}</div>
+                <div class="minesweeper_status_bar" >
+                    <div class="minesweeper_status_bar_item" title="Режим игры"><i class="fas fa-signal"></i> {{level.title}}</div>
+                    <div class="minesweeper_status_bar_item" title="Время игры"><i class="far fa-clock"></i> {{game_time_formated}}</div>
+                    <div class="minesweeper_status_bar_item" title="Отмечено мин / Всего мин"><i class="fa fa-bomb"></i> {{marked_count}} /  {{mines_count}}</div>
                 </div>
 
-                <div class="table" v-bind:class="{ game_losed: game_over && !game_won }">
-                    <template  v-for="item in level.size">
-                        <div class="row">
-                            <div v-for="item1 in level.size" class="cell closed" @click.left="open_cell" @click.right.prevent="mark_cell"></div>
+                <div class="minesweeper_table" v-bind:class="{ game_losed: game_over && !game_won }">
+                    <template  v-for="minesweeper_status_bar_item in level.size">
+                        <div class="minesweeper_row">
+                            <div v-for="minesweeper_status_bar_item1 in level.size" class="cell closed" @click.left="open_cell" @click.right.prevent="mark_cell"></div>
                         </div>
                     </template>
                 </div>
 
-                <div class="status_bar" v-if="game_over" >
-                    <div class="item " v-if="!game_won"><strong>Вы проиграли!</strong> <i class="far fa-frown"></i></div>
-                    <div class="item " v-if="game_won"><strong>Ура, вы победили!</strong> <i class="far fa-thumbs-up"></i></div>
+                <div class="minesweeper_status_bar" v-if="game_over" >
+                    <div class="minesweeper_status_bar_item " v-if="!game_won"><strong>Вы проиграли!</strong> <i class="far fa-frown"></i></div>
+                    <div class="minesweeper_status_bar_item " v-if="game_won"><strong>Ура, вы победили!</strong> <i class="far fa-thumbs-up"></i></div>
                 </div>
                 
-                <div class="status_bar" v-if="game_over">
-                    <div class="item " v-if="!screen_saved && !screening"><a href="#" class="green" @click.prevent="save_screen">Поделитесь скриншотом своей игры :)</a></div>
-                    <div class="item " v-if="screening">Подождите, делаем скрин...</a></div>
+                <div class="minesweeper_status_bar" v-if="game_over">
+                    <div class="minesweeper_status_bar_item " v-if="!screen_saved && !screening"><a href="#" class="green" @click.prevent="save_screen">Поделитесь скриншотом своей игры :)</a></div>
+                    <div class="minesweeper_status_bar_item " v-if="screening">Подождите, делаем скрин...</a></div>
                     
                     <div class="" v-if="screen_saved">
                         Поделиться
-                        <a class="item" style="color: #4a76a8" :href="share_url_vk" target="_blank" ><i class="fab fa-vk" style="margin-right: 5px;"></i>Vk</a>
-                        <a class="item " style="color: #4267b2" :href="share_url_fb" target="_blank" ><i class="fab fa-facebook-square" style="margin-right: 5px;"></i>Fb</a>
+                        <a class="minesweeper_status_bar_item" style="color: #4a76a8" :href="share_url_vk" target="_blank" ><i class="fab fa-vk" style="margin-right: 5px;"></i>Vk</a>
+                        <a class="minesweeper_status_bar_item " style="color: #4267b2" :href="share_url_fb" target="_blank" ><i class="fab fa-facebook-square" style="margin-right: 5px;"></i>Fb</a>
                     </div>
                 </div>
             </div>
 
 
-            <div class="status_bar" >
-                <a class="item orange" href="https://dermanov.ru#from=minesweeper" target="_blank">Марк Дерманов</a>
-                <div class="item sep">|</div>
-                <a class="item orange" href="https://github.com/dermanov-ru/vue_js_minesweeper_game" target="_blank" >Fork me on GitHub</a>
+            <div class="minesweeper_status_bar" >
+                <a class="minesweeper_status_bar_item orange" href="https://dermanov.ru#from=minesweeper" target="_blank">Марк Дерманов</a>
+                <div class="minesweeper_status_bar_item minesweeper_status_bar_item_sep">|</div>
+                <a class="minesweeper_status_bar_item orange" href="https://github.com/dermanov-ru/vue_js_minesweeper_game" target="_blank" >Fork me on GitHub</a>
             </div>
         </div>
     </div>
