@@ -209,10 +209,7 @@ new Vue({
             });
         },
         add_mines : function (start_cell) {
-            var count_min = Math.max(2, Math.floor(Math.pow(this.level.size, 2) / 5));
-            var count_max = Math.floor(count_min * 1.5);
-
-            var mines_count = this.randomIntFromInterval(count_min, count_max);
+            var mines_count = Math.max(2, Math.floor(Math.pow(this.level.size, 2) / 6));
             var cells_objects = this.cells;
 
             // add mines
