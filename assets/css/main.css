@@ -1,7 +1,3 @@
-body{
-    margin: 10px 0;
-}
-
 .minesweeper[v-cloak] > * {
     display: none;
 }
