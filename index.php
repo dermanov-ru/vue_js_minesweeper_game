@@ -30,7 +30,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/functions.php";
         
         <div >
             <div class="minesweeper_status_bar titlle">
-                <div class="minesweeper_status_bar_item" title="">Игра "Сапер"</div>
+                <div class="minesweeper_status_bar_item" title="">Игра «Сапёр»</div>
             </div>
 
             <div v-if="!is_level_selected">
